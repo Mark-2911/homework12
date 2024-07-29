@@ -1,6 +1,3 @@
-import java.time.LocalDate;
-import java.util.Locale;
-
 public class Main {
     public static void isLeap(int year) {
         if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
@@ -10,56 +7,79 @@ public class Main {
         }
     }
 
-
     public static void installationSystem(int os, int yearSystem) {
-        int currentYear = LocalDate.now().getYear();
-        if (os == 0 && yearSystem == currentYear) {
-            System.out.println("Установите версию для iOS по ссылке");
-        } else if (os == 0 && yearSystem < currentYear) {
-            System.out.println("Установите облегченную версию для iOS по ссылке");
-        } else if (os == 1 && yearSystem == currentYear) {
-            System.out.println("Установите версию для Android по ссылке");
-        } else if (os == 1 && yearSystem < currentYear) {
-            System.out.println("Установите облеченную версию для Android по ссылке");
+        if ((os == 1) && (yearSystem < 2015)) {
+            System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        } else if ((os == 1) && (yearSystem >= 2015)) {
+            System.out.println("Установите версию приложения для Android по ссылке ");
         }
+        if ((os == 0) && (yearSystem < 2015)) {
+            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+
+        } else if ((os == 0) && (yearSystem >= 2015)) {
+            System.out.println("Установите версию приложения для iOS");
+        }
+
     }
 
     public static void countDays(int deliveryDistance) {
-        if (deliveryDistance <= 100) {
-            if (deliveryDistance < 20) {
-                System.out.println("Доставка в радиусе " + deliveryDistance + " км " + " занимает один день.");
-            } else if (deliveryDistance >= 20 && deliveryDistance < 60) {
-                System.out.println("Доствка в радиусе " + deliveryDistance + " км " + " занимает два дня.");
-            } else if (deliveryDistance >= 60 && deliveryDistance <= 100) {
-                System.out.println("Доставка в радиусе " + deliveryDistance + " км " + " занимает три дня.");
-            } else if (deliveryDistance < 100) {
-                System.out.println("На такое растояние доставка не осуществляется.");
-            }
+        int days = -1;
+        if (deliveryDistance <= 20) {
+            days++;
+            System.out.println("Доставка в радиусе " + deliveryDistance + " занимает один день");
+        } else if (deliveryDistance <= 60) {
+            days += 2;
+            System.out.println("Доставка в радиусе " + deliveryDistance + " занимает два дня");
+        } else if (deliveryDistance <= 100) {
+            days += 3;
+            System.out.println("Доставка в радиусе " + deliveryDistance + " занимает три дня");
+
+
+        } else if (deliveryDistance > 100) {
+            System.out.println("Доставки нет ");
         }
-
-
     }
+
 
     public static void main(String[] args) {
-
         System.out.println("Задача 1");
 
-        int[] years = new int[125];
-        for (int i = 0; i <= years.length - 1; i++) {
-            years[i] = (i + 1900);
+        int[] year = new int[125];
+        for (int i = 0; i <= year.length - 1; i++) {
+            year[i] = (i + 1900);
         }
-        for (final int i : years) {
+        for (final int i : year) {
             isLeap(i);
         }
-
         System.out.println("Задача 2");
-        installationSystem(1, 2024);
+
+        installationSystem(1, 2015);
 
         System.out.println("Задача 3");
-        countDays(95);
+
+        countDays(101);
+
 
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
